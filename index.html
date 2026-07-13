@@ -1,151 +1,208 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connor • Personal Dashboard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600&display=swap');
-        body { font-family: 'Inter', system_ui, sans-serif; }
-        .heading-font { font-family: 'Space Grotesk', sans-serif; font-weight: 600; }
-        .vikings-purple { color: #4F2C7F; }
-        .vikings-gold { color: #F4C430; }
+        
+        :root {
+            --vikings-purple: #4F2C7F;
+            --vikings-gold: #F4C430;
+        }
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+            background-color: #0a0a0a;
+            color: #e4e4e7;
+        }
+        
+        .heading-font {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+        }
+        
+        .vikings-purple { color: var(--vikings-purple); }
+        .vikings-gold { color: var(--vikings-gold); }
+        
+        .card {
+            background-color: #18181b;
+            border: 1px solid #3f3f46;
+            border-radius: 1.5rem;
+        }
+        
+        .section-header {
+            font-size: 2.25rem;
+            line-height: 2.5rem;
+            font-weight: 600;
+            letter-spacing: -0.025em;
+        }
+        
+        .nav-link {
+            transition: color 0.2s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--vikings-gold);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 12px 0;
+            text-align: left;
+        }
+        
+        th {
+            color: #71717a;
+            font-weight: 500;
+            border-bottom: 1px solid #3f3f46;
+        }
+        
+        tr {
+            border-bottom: 1px solid #27272a;
+        }
     </style>
 </head>
-<body class="bg-zinc-950 text-zinc-200">
+<body>
     <!-- Navbar -->
-    <nav class="sticky top-0 z-50 border-b border-purple-900 bg-zinc-950/95 backdrop-blur-lg">
-        <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
-            <div class="flex items-center gap-x-3">
-                <div class="w-9 h-9 bg-gradient-to-br from-purple-700 to-yellow-400 rounded-2xl flex items-center justify-center text-zinc-950 font-bold">C</div>
-                <span class="font-semibold text-2xl tracking-tight">Connor</span>
+    <nav style="position: sticky; top: 0; z-index: 50; background: rgba(10,10,10,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #3f3f46;">
+        <div style="max-width: 1152px; margin: 0 auto; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 36px; height: 36px; background: linear-gradient(135deg, #4F2C7F, #F4C430); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #0a0a0a; font-weight: bold; font-size: 20px;">C</div>
+                <span style="font-size: 24px; font-weight: 600; letter-spacing: -0.5px;">Connor</span>
             </div>
-            <div class="flex items-center gap-x-8 text-sm font-medium">
-                <a href="#portfolio" class="hover:text-yellow-400 transition-colors">Portfolio</a>
-                <a href="#vehicles" class="hover:text-yellow-400 transition-colors">Vehicles</a>
-                <a href="#goals" class="hover:text-yellow-400 transition-colors">Goals</a>
-                <a href="#rules" class="hover:text-yellow-400 transition-colors">Rules</a>
+            
+            <div style="display: flex; align-items: center; gap: 32px; font-size: 14px; font-weight: 500;">
+                <a href="#portfolio" class="nav-link" style="color: #e4e4e7; text-decoration: none;">Portfolio</a>
+                <a href="#vehicles" class="nav-link" style="color: #e4e4e7; text-decoration: none;">Vehicles</a>
+                <a href="#goals" class="nav-link" style="color: #e4e4e7; text-decoration: none;">Goals</a>
+                <a href="#rules" class="nav-link" style="color: #e4e4e7; text-decoration: none;">Rules</a>
+                
                 <button onclick="toggleDarkMode()" 
-                        class="w-10 h-10 flex items-center justify-center rounded-full border border-purple-700 hover:bg-purple-900 transition-colors">
-                    <i id="theme-icon" class="fa-solid fa-moon text-xl"></i>
+                        style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 9999px; border: 1px solid #4F2C7F; background: transparent; cursor: pointer;">
+                    <i id="theme-icon" class="fa-solid fa-moon" style="font-size: 18px; color: #a1a1aa;"></i>
                 </button>
             </div>
         </div>
     </nav>
 
     <!-- Hero -->
-    <div class="max-w-6xl mx-auto px-6 pt-16 pb-12">
-        <h1 class="text-6xl md:text-7xl heading-font tracking-tighter">Connor</h1>
-        <p class="mt-4 text-xl text-zinc-400">Game Dev • Investor • Family Builder</p>
+    <div style="max-width: 1152px; margin: 0 auto; padding: 64px 24px 48px;">
+        <h1 style="font-size: 64px; line-height: 1; font-weight: 600; letter-spacing: -3px;" class="heading-font vikings-purple">Connor</h1>
+        <p style="margin-top: 16px; font-size: 20px; color: #71717a;">Game Dev • Investor • Family Builder</p>
     </div>
 
     <!-- Portfolio -->
-    <div id="portfolio" class="max-w-6xl mx-auto px-6 py-16 border-t border-purple-900">
-        <h2 class="text-4xl font-semibold mb-2 vikings-purple">Portfolio Overview</h2>
-        <div class="text-emerald-400 mb-8">$275,947 Total • From your Google Sheet</div>
+    <div id="portfolio" style="max-width: 1152px; margin: 0 auto; padding: 64px 24px; border-top: 1px solid #3f3f46;">
+        <h2 class="section-header vikings-purple" style="margin-bottom: 8px;">Portfolio Overview</h2>
+        <div style="color: #4ade80; margin-bottom: 32px;">$275,947 Total • From your Google Sheet</div>
         
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            <div class="bg-zinc-900 border border-purple-900 p-6 rounded-3xl">
-                <div class="text-sm text-zinc-400">Today's Change</div>
-                <div class="text-2xl font-semibold text-red-400">-$3,531 (-1.28%)</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 32px;">
+            <div class="card" style="padding: 24px;">
+                <div style="font-size: 14px; color: #71717a;">Today's Change</div>
+                <div style="font-size: 28px; font-weight: 600; color: #f87171;">-$3,531 (-1.28%)</div>
             </div>
-            <div class="bg-zinc-900 border border-purple-900 p-6 rounded-3xl">
-                <div class="text-sm text-zinc-400">Unrealized Gain</div>
-                <div class="text-2xl font-semibold text-emerald-400">$70,523 (26.36%)</div>
+            <div class="card" style="padding: 24px;">
+                <div style="font-size: 14px; color: #71717a;">Unrealized Gain</div>
+                <div style="font-size: 28px; font-weight: 600; color: #4ade80;">$70,523 (26.36%)</div>
             </div>
-            <div class="bg-zinc-900 border border-purple-900 p-6 rounded-3xl">
-                <div class="text-sm text-zinc-400">YTD Contributions</div>
-                <div class="text-2xl font-semibold">$46,500</div>
+            <div class="card" style="padding: 24px;">
+                <div style="font-size: 14px; color: #71717a;">YTD Contributions</div>
+                <div style="font-size: 28px; font-weight: 600;">$46,500</div>
             </div>
-            <div class="bg-zinc-900 border border-purple-900 p-6 rounded-3xl">
-                <div class="text-sm text-zinc-400">EoY Projections</div>
-                <div class="text-xs">Bear: ~$260k • Base: ~$295k • Bull: ~$330k</div>
+            <div class="card" style="padding: 24px;">
+                <div style="font-size: 14px; color: #71717a;">EoY Projections</div>
+                <div style="font-size: 13px;">Bear • Base • Bull</div>
             </div>
         </div>
 
-        <h3 class="font-semibold mb-4 vikings-purple">Current Holdings</h3>
-        <div class="overflow-x-auto">
-            <table class="w-full text-sm">
-                <thead>
-                    <tr class="text-left border-b border-purple-900 text-zinc-400">
-                        <th class="py-3">Symbol</th>
-                        <th class="py-3">Shares</th>
-                        <th class="py-3 text-right">Value</th>
-                        <th class="py-3 text-right">% Portfolio</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-purple-900">
-                    <tr>
-                        <td class="py-3 font-mono">TSLA</td>
-                        <td class="py-3">625</td>
-                        <td class="py-3 text-right">$254,850</td>
-                        <td class="py-3 text-right">89%</td>
-                    </tr>
-                    <tr>
-                        <td class="py-3 font-mono">Space X</td>
-                        <td class="py-3">145.2</td>
-                        <td class="py-3 text-right">$21,097</td>
-                        <td class="py-3 text-right">11%</td>
-                    </tr>
-                    <tr>
-                        <td class="py-3 font-mono">VOO (401k)</td>
-                        <td class="py-3">62.86</td>
-                        <td class="py-3 text-right">$43,616</td>
-                        <td class="py-3 text-right">—</td>
-                    </tr>
-                    <tr>
-                        <td class="py-3 font-mono">QQQ (401k)</td>
-                        <td class="py-3">25.51</td>
-                        <td class="py-3 text-right">$18,508</td>
-                        <td class="py-3 text-right">—</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <h3 style="font-weight: 600; margin-bottom: 16px;" class="vikings-purple">Current Holdings</h3>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Shares</th>
+                    <th style="text-align: right;">Value</th>
+                    <th style="text-align: right;">% Portfolio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="font-family: monospace;">TSLA</td>
+                    <td>625</td>
+                    <td style="text-align: right;">$254,850</td>
+                    <td style="text-align: right; color: #4ade80;">89%</td>
+                </tr>
+                <tr>
+                    <td style="font-family: monospace;">Space X</td>
+                    <td>145.2</td>
+                    <td style="text-align: right;">$21,097</td>
+                    <td style="text-align: right;">11%</td>
+                </tr>
+                <tr>
+                    <td style="font-family: monospace;">VOO (401k)</td>
+                    <td>62.86</td>
+                    <td style="text-align: right;">$43,616</td>
+                    <td style="text-align: right;">—</td>
+                </tr>
+                <tr>
+                    <td style="font-family: monospace;">QQQ (401k)</td>
+                    <td>25.51</td>
+                    <td style="text-align: right;">$18,508</td>
+                    <td style="text-align: right;">—</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
     <!-- Vehicles -->
-    <div id="vehicles" class="max-w-6xl mx-auto px-6 py-16 border-t border-purple-900">
-        <h2 class="text-4xl font-semibold mb-8 vikings-purple">Vehicle Transition Plan</h2>
-        <div class="grid md:grid-cols-2 gap-6">
-            <div class="bg-zinc-900 border border-purple-900 p-8 rounded-3xl">
-                <h3 class="font-semibold mb-4">Current Fleet</h3>
+    <div id="vehicles" style="max-width: 1152px; margin: 0 auto; padding: 64px 24px; border-top: 1px solid #3f3f46;">
+        <h2 class="section-header vikings-purple" style="margin-bottom: 32px;">Vehicle Transition Plan</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+            <div class="card" style="padding: 32px;">
+                <h3 style="font-weight: 600; margin-bottom: 16px;">Current Fleet</h3>
                 <div>BMW 320i (high mileage) • Hyundai Elantra</div>
             </div>
-            <div class="bg-zinc-900 border border-yellow-400 p-8 rounded-3xl">
-                <h3 class="font-semibold mb-4 text-yellow-400">Next Steps</h3>
+            <div class="card" style="padding: 32px; border-color: #F4C430;">
+                <h3 style="font-weight: 600; margin-bottom: 16px; color: #F4C430;">Next Steps</h3>
                 <div>Model Y 7-Seater (priority, low-APR) • Cybertruck later</div>
             </div>
         </div>
     </div>
 
-    <!-- Goals / Projections -->
-    <div id="goals" class="max-w-6xl mx-auto px-6 py-16 border-t border-purple-900">
-        <h2 class="text-4xl font-semibold mb-8 vikings-purple">Retirement Projections (2036)</h2>
-        <div class="bg-zinc-900 border border-purple-900 p-8 rounded-3xl">
-            <div class="grid grid-cols-3 gap-6 text-center">
+    <!-- Goals -->
+    <div id="goals" style="max-width: 1152px; margin: 0 auto; padding: 64px 24px; border-top: 1px solid #3f3f46;">
+        <h2 class="section-header vikings-purple" style="margin-bottom: 32px;">Retirement Projections (2036)</h2>
+        <div class="card" style="padding: 32px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 24px; text-align: center;">
                 <div>
-                    <div class="text-sm text-zinc-400">Bear Case</div>
-                    <div class="text-3xl font-semibold">~$260k</div>
+                    <div style="font-size: 14px; color: #71717a;">Bear Case</div>
+                    <div style="font-size: 28px; font-weight: 600;">~$260k</div>
                 </div>
                 <div>
-                    <div class="text-sm text-zinc-400">Base Case</div>
-                    <div class="text-3xl font-semibold">~$295k</div>
+                    <div style="font-size: 14px; color: #71717a;">Base Case</div>
+                    <div style="font-size: 28px; font-weight: 600;">~$295k</div>
                 </div>
                 <div>
-                    <div class="text-sm text-zinc-400">Bull Case</div>
-                    <div class="text-3xl font-semibold">~$330k</div>
+                    <div style="font-size: 14px; color: #71717a;">Bull Case</div>
+                    <div style="font-size: 28px; font-weight: 600;">~$330k</div>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Rules -->
-    <div id="rules" class="max-w-6xl mx-auto px-6 py-16 border-t border-purple-900">
-        <h2 class="text-4xl font-semibold mb-8 vikings-purple">Investment Rules</h2>
-        <div class="bg-zinc-900 border border-purple-900 p-8 rounded-3xl space-y-3 text-sm">
+    <div id="rules" style="max-width: 1152px; margin: 0 auto; padding: 64px 24px; border-top: 1px solid #3f3f46;">
+        <h2 class="section-header vikings-purple" style="margin-bottom: 32px;">Investment Rules</h2>
+        <div class="card" style="padding: 32px; line-height: 1.7;">
             <div><strong>Core:</strong> Savings Rate: Aim for $75k+ per year into Schwab</div>
             <div>Schwab New Money: 60% SpaceX + 40% Tesla</div>
             <div>401(k): 6% for full match • 70% VOO / 30% QQQ</div>
@@ -153,39 +210,46 @@
         </div>
     </div>
 
-    <footer class="text-center py-8 text-xs text-zinc-500">
+    <footer style="text-align: center; padding: 32px 24px; font-size: 12px; color: #71717a;">
         Personal dashboard • Data from your Google Sheet • Vikings theme
     </footer>
 
     <script>
         function toggleDarkMode() {
-            const html = document.documentElement;
-            html.classList.toggle('dark');
-            
+            const body = document.body;
             const icon = document.getElementById('theme-icon');
             
-            if (html.classList.contains('dark')) {
+            if (body.style.backgroundColor === 'white' || body.style.backgroundColor === '#ffffff') {
+                // Switch to dark
+                body.style.backgroundColor = '#0a0a0a';
+                body.style.color = '#e4e4e7';
                 icon.classList.remove('fa-sun');
                 icon.classList.add('fa-moon');
                 localStorage.setItem('theme', 'dark');
             } else {
+                // Switch to light
+                body.style.backgroundColor = '#ffffff';
+                body.style.color = '#18181b';
                 icon.classList.remove('fa-moon');
                 icon.classList.add('fa-sun');
                 localStorage.setItem('theme', 'light');
             }
         }
         
-        // Load saved theme on page load
+        // Load saved theme
         function loadTheme() {
             const savedTheme = localStorage.getItem('theme');
             const icon = document.getElementById('theme-icon');
+            const body = document.body;
             
             if (savedTheme === 'light') {
-                document.documentElement.classList.remove('dark');
+                body.style.backgroundColor = '#ffffff';
+                body.style.color = '#18181b';
                 icon.classList.remove('fa-moon');
                 icon.classList.add('fa-sun');
             } else {
-                document.documentElement.classList.add('dark');
+                body.style.backgroundColor = '#0a0a0a';
+                body.style.color = '#e4e4e7';
                 icon.classList.remove('fa-sun');
                 icon.classList.add('fa-moon');
             }
