@@ -8,97 +8,190 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+        body { font-family: 'Inter', system_ui, sans-serif; }
         .heading-font { font-family: 'Space Grotesk', sans-serif; font-weight: 600; }
+        .vikings-purple { color: #4F2C7F; }
+        .vikings-gold { color: #F4C430; }
     </style>
 </head>
 <body class="bg-zinc-950 text-zinc-200">
+    <!-- Navbar -->
     <nav class="sticky top-0 z-50 border-b border-purple-900 bg-zinc-950/95 backdrop-blur-lg">
         <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
             <div class="flex items-center gap-x-3">
                 <div class="w-9 h-9 bg-gradient-to-br from-purple-700 to-yellow-400 rounded-2xl flex items-center justify-center text-zinc-950 font-bold">C</div>
-                <span class="font-semibold text-2xl tracking-tight vikings-purple">Connor</span>
+                <span class="font-semibold text-2xl tracking-tight">Connor</span>
             </div>
             <div class="flex items-center gap-x-8 text-sm font-medium">
                 <a href="#portfolio" class="hover:text-yellow-400 transition-colors">Portfolio</a>
                 <a href="#vehicles" class="hover:text-yellow-400 transition-colors">Vehicles</a>
                 <a href="#goals" class="hover:text-yellow-400 transition-colors">Goals</a>
                 <a href="#rules" class="hover:text-yellow-400 transition-colors">Rules</a>
-                <button onclick="toggleDarkMode()" class="w-10 h-10 flex items-center justify-center rounded-full border border-purple-700 hover:bg-purple-900 transition-colors">
+                <button onclick="toggleDarkMode()" 
+                        class="w-10 h-10 flex items-center justify-center rounded-full border border-purple-700 hover:bg-purple-900 transition-colors">
                     <i id="theme-icon" class="fa-solid fa-moon text-xl"></i>
                 </button>
             </div>
         </div>
     </nav>
 
-    <!-- Portfolio with more data -->
-    <div id="portfolio" class="max-w-6xl mx-auto px-6 py-16">
-        <h2 class="text-4xl font-bold mb-2 vikings-purple">Portfolio Overview</h2>
-        <div class="text-emerald-400 mb-8">$275,947 Total</div>
+    <!-- Hero -->
+    <div class="max-w-6xl mx-auto px-6 pt-16 pb-12">
+        <h1 class="text-6xl md:text-7xl heading-font tracking-tighter">Connor</h1>
+        <p class="mt-4 text-xl text-zinc-400">Game Dev • Investor • Family Builder</p>
+    </div>
+
+    <!-- Portfolio -->
+    <div id="portfolio" class="max-w-6xl mx-auto px-6 py-16 border-t border-purple-900">
+        <h2 class="text-4xl font-semibold mb-2 vikings-purple">Portfolio Overview</h2>
+        <div class="text-emerald-400 mb-8">$275,947 Total • From your Google Sheet</div>
         
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            <div class="bg-zinc-900 p-6 rounded-3xl border border-purple-900">
+            <div class="bg-zinc-900 border border-purple-900 p-6 rounded-3xl">
                 <div class="text-sm text-zinc-400">Today's Change</div>
                 <div class="text-2xl font-semibold text-red-400">-$3,531 (-1.28%)</div>
             </div>
-            <div class="bg-zinc-900 p-6 rounded-3xl border border-purple-900">
+            <div class="bg-zinc-900 border border-purple-900 p-6 rounded-3xl">
                 <div class="text-sm text-zinc-400">Unrealized Gain</div>
                 <div class="text-2xl font-semibold text-emerald-400">$70,523 (26.36%)</div>
             </div>
-            <div class="bg-zinc-900 p-6 rounded-3xl border border-purple-900">
+            <div class="bg-zinc-900 border border-purple-900 p-6 rounded-3xl">
                 <div class="text-sm text-zinc-400">YTD Contributions</div>
                 <div class="text-2xl font-semibold">$46,500</div>
             </div>
-            <div class="bg-zinc-900 p-6 rounded-3xl border border-purple-900">
-                <div class="text-sm text-zinc-400">Projections (EoY)</div>
-                <div>Bear: ~$260k • Base: ~$295k • Bull: ~$330k</div>
+            <div class="bg-zinc-900 border border-purple-900 p-6 rounded-3xl">
+                <div class="text-sm text-zinc-400">EoY Projections</div>
+                <div class="text-xs">Bear: ~$260k • Base: ~$295k • Bull: ~$330k</div>
             </div>
         </div>
 
-        <!-- Holdings table (full) -->
         <h3 class="font-semibold mb-4 vikings-purple">Current Holdings</h3>
-        <table class="w-full text-sm">
-            <thead>
-                <tr class="border-b border-purple-900 text-zinc-400">
-                    <th class="py-3 text-left">Symbol</th>
-                    <th class="py-3 text-left">Shares</th>
-                    <th class="py-3 text-right">Value</th>
-                    <th class="py-3 text-right">% Portfolio</th>
-                </tr>
-            </thead>
-            <tbody class="divide-y divide-purple-900">
-                <tr>
-                    <td class="py-3">TSLA</td>
-                    <td class="py-3">625</td>
-                    <td class="py-3 text-right">$254,850</td>
-                    <td class="py-3 text-right">89%</td>
-                </tr>
-                <tr>
-                    <td class="py-3">Space X</td>
-                    <td class="py-3">145.2</td>
-                    <td class="py-3 text-right">$21,097</td>
-                    <td class="py-3 text-right">11%</td>
-                </tr>
-                <!-- Add more rows from your sheet if needed -->
-            </tbody>
-        </table>
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+                <thead>
+                    <tr class="text-left border-b border-purple-900 text-zinc-400">
+                        <th class="py-3">Symbol</th>
+                        <th class="py-3">Shares</th>
+                        <th class="py-3 text-right">Value</th>
+                        <th class="py-3 text-right">% Portfolio</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-purple-900">
+                    <tr>
+                        <td class="py-3 font-mono">TSLA</td>
+                        <td class="py-3">625</td>
+                        <td class="py-3 text-right">$254,850</td>
+                        <td class="py-3 text-right">89%</td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 font-mono">Space X</td>
+                        <td class="py-3">145.2</td>
+                        <td class="py-3 text-right">$21,097</td>
+                        <td class="py-3 text-right">11%</td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 font-mono">VOO (401k)</td>
+                        <td class="py-3">62.86</td>
+                        <td class="py-3 text-right">$43,616</td>
+                        <td class="py-3 text-right">—</td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 font-mono">QQQ (401k)</td>
+                        <td class="py-3">25.51</td>
+                        <td class="py-3 text-right">$18,508</td>
+                        <td class="py-3 text-right">—</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
-    <!-- More sections... -->
+    <!-- Vehicles -->
+    <div id="vehicles" class="max-w-6xl mx-auto px-6 py-16 border-t border-purple-900">
+        <h2 class="text-4xl font-semibold mb-8 vikings-purple">Vehicle Transition Plan</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-zinc-900 border border-purple-900 p-8 rounded-3xl">
+                <h3 class="font-semibold mb-4">Current Fleet</h3>
+                <div>BMW 320i (high mileage) • Hyundai Elantra</div>
+            </div>
+            <div class="bg-zinc-900 border border-yellow-400 p-8 rounded-3xl">
+                <h3 class="font-semibold mb-4 text-yellow-400">Next Steps</h3>
+                <div>Model Y 7-Seater (priority, low-APR) • Cybertruck later</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Goals / Projections -->
+    <div id="goals" class="max-w-6xl mx-auto px-6 py-16 border-t border-purple-900">
+        <h2 class="text-4xl font-semibold mb-8 vikings-purple">Retirement Projections (2036)</h2>
+        <div class="bg-zinc-900 border border-purple-900 p-8 rounded-3xl">
+            <div class="grid grid-cols-3 gap-6 text-center">
+                <div>
+                    <div class="text-sm text-zinc-400">Bear Case</div>
+                    <div class="text-3xl font-semibold">~$260k</div>
+                </div>
+                <div>
+                    <div class="text-sm text-zinc-400">Base Case</div>
+                    <div class="text-3xl font-semibold">~$295k</div>
+                </div>
+                <div>
+                    <div class="text-sm text-zinc-400">Bull Case</div>
+                    <div class="text-3xl font-semibold">~$330k</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rules -->
+    <div id="rules" class="max-w-6xl mx-auto px-6 py-16 border-t border-purple-900">
+        <h2 class="text-4xl font-semibold mb-8 vikings-purple">Investment Rules</h2>
+        <div class="bg-zinc-900 border border-purple-900 p-8 rounded-3xl space-y-3 text-sm">
+            <div><strong>Core:</strong> Savings Rate: Aim for $75k+ per year into Schwab</div>
+            <div>Schwab New Money: 60% SpaceX + 40% Tesla</div>
+            <div>401(k): 6% for full match • 70% VOO / 30% QQQ</div>
+            <div><strong>Long-Term:</strong> Use brokerage for liquidity at age 38. Leave 401(k) untouched.</div>
+        </div>
+    </div>
+
+    <footer class="text-center py-8 text-xs text-zinc-500">
+        Personal dashboard • Data from your Google Sheet • Vikings theme
+    </footer>
 
     <script>
         function toggleDarkMode() {
             const html = document.documentElement;
             html.classList.toggle('dark');
+            
             const icon = document.getElementById('theme-icon');
+            
             if (html.classList.contains('dark')) {
                 icon.classList.remove('fa-sun');
                 icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'dark');
             } else {
                 icon.classList.remove('fa-moon');
                 icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'light');
             }
         }
+        
+        // Load saved theme on page load
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const icon = document.getElementById('theme-icon');
+            
+            if (savedTheme === 'light') {
+                document.documentElement.classList.remove('dark');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                document.documentElement.classList.add('dark');
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
+        
+        window.onload = loadTheme;
     </script>
 </body>
 </html>
