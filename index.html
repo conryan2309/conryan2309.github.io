@@ -1,51 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connor • Personal Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600&display=swap');
         body { font-family: 'Inter', sans-serif; }
-        .heading-font { font-family: 'Space Grotesk', sans-serif; }
-        .vikings-purple { color: #4F2C7F; }
-        .vikings-gold { color: #F4C430; }
+        .heading-font { font-family: 'Space Grotesk', sans-serif; font-weight: 600; }
     </style>
 </head>
 <body class="bg-zinc-950 text-zinc-200">
-    <nav class="sticky top-0 z-50 border-b border-purple-900 bg-zinc-950/95 backdrop-blur">
+    <nav class="sticky top-0 z-50 border-b border-purple-900 bg-zinc-950/95 backdrop-blur-lg">
         <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-gradient-to-br from-purple-700 to-yellow-400 rounded-2xl flex items-center justify-center text-black font-bold text-2xl">C</div>
-                <span class="text-2xl font-bold tracking-tight">Connor</span>
+            <div class="flex items-center gap-x-3">
+                <div class="w-9 h-9 bg-gradient-to-br from-purple-700 to-yellow-400 rounded-2xl flex items-center justify-center text-zinc-950 font-bold">C</div>
+                <span class="font-semibold text-2xl tracking-tight vikings-purple">Connor</span>
             </div>
-            <div class="flex items-center gap-8 text-sm">
-                <a href="#portfolio" class="hover:text-yellow-400">Portfolio</a>
-                <a href="#vehicles" class="hover:text-yellow-400">Vehicles</a>
-                <a href="#goals" class="hover:text-yellow-400">Goals</a>
-                <a href="#rules" class="hover:text-yellow-400">Rules</a>
-                <button onclick="toggleTheme()" class="w-10 h-10 flex items-center justify-center rounded-full border border-purple-700 hover:bg-purple-900">
+            <div class="flex items-center gap-x-8 text-sm font-medium">
+                <a href="#portfolio" class="hover:text-yellow-400 transition-colors">Portfolio</a>
+                <a href="#vehicles" class="hover:text-yellow-400 transition-colors">Vehicles</a>
+                <a href="#goals" class="hover:text-yellow-400 transition-colors">Goals</a>
+                <a href="#rules" class="hover:text-yellow-400 transition-colors">Rules</a>
+                <button onclick="toggleDarkMode()" class="w-10 h-10 flex items-center justify-center rounded-full border border-purple-700 hover:bg-purple-900 transition-colors">
                     <i id="theme-icon" class="fa-solid fa-moon text-xl"></i>
                 </button>
             </div>
         </div>
     </nav>
 
-    <!-- Rest of your content with more data... -->
+    <!-- Portfolio with more data -->
+    <div id="portfolio" class="max-w-6xl mx-auto px-6 py-16">
+        <h2 class="text-4xl font-bold mb-2 vikings-purple">Portfolio Overview</h2>
+        <div class="text-emerald-400 mb-8">$275,947 Total</div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-zinc-900 p-6 rounded-3xl border border-purple-900">
+                <div class="text-sm text-zinc-400">Today's Change</div>
+                <div class="text-2xl font-semibold text-red-400">-$3,531 (-1.28%)</div>
+            </div>
+            <div class="bg-zinc-900 p-6 rounded-3xl border border-purple-900">
+                <div class="text-sm text-zinc-400">Unrealized Gain</div>
+                <div class="text-2xl font-semibold text-emerald-400">$70,523 (26.36%)</div>
+            </div>
+            <div class="bg-zinc-900 p-6 rounded-3xl border border-purple-900">
+                <div class="text-sm text-zinc-400">YTD Contributions</div>
+                <div class="text-2xl font-semibold">$46,500</div>
+            </div>
+            <div class="bg-zinc-900 p-6 rounded-3xl border border-purple-900">
+                <div class="text-sm text-zinc-400">Projections (EoY)</div>
+                <div>Bear: ~$260k • Base: ~$295k • Bull: ~$330k</div>
+            </div>
+        </div>
+
+        <!-- Holdings table (full) -->
+        <h3 class="font-semibold mb-4 vikings-purple">Current Holdings</h3>
+        <table class="w-full text-sm">
+            <thead>
+                <tr class="border-b border-purple-900 text-zinc-400">
+                    <th class="py-3 text-left">Symbol</th>
+                    <th class="py-3 text-left">Shares</th>
+                    <th class="py-3 text-right">Value</th>
+                    <th class="py-3 text-right">% Portfolio</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-purple-900">
+                <tr>
+                    <td class="py-3">TSLA</td>
+                    <td class="py-3">625</td>
+                    <td class="py-3 text-right">$254,850</td>
+                    <td class="py-3 text-right">89%</td>
+                </tr>
+                <tr>
+                    <td class="py-3">Space X</td>
+                    <td class="py-3">145.2</td>
+                    <td class="py-3 text-right">$21,097</td>
+                    <td class="py-3 text-right">11%</td>
+                </tr>
+                <!-- Add more rows from your sheet if needed -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- More sections... -->
 
     <script>
-        function toggleTheme() {
-            document.documentElement.classList.toggle('dark');
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            html.classList.toggle('dark');
             const icon = document.getElementById('theme-icon');
-            if (document.documentElement.classList.contains('dark')) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            } else {
+            if (html.classList.contains('dark')) {
                 icon.classList.remove('fa-sun');
                 icon.classList.add('fa-moon');
+            } else {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
             }
         }
     </script>
